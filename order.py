@@ -82,10 +82,15 @@ print("\n")
 # une liste d'articles, puis ajoute cette commande à la liste des commandes existantes. Assurez-vous de vérifier si la commande existe déjà.
 
 print("fonction ajouter_commande(num_commande, liste_articles):")
+# ajout de l'entrée prix_article afin qu'une commande ait à la fois les articles commandés ainsi que leur prix
 
-def ajouter_commande(num_commande, liste_articles):
+def ajouter_commande(num_commande, liste_articles, prix_articles):
     if len(liste_articles) == 0:
         print(f"La commande {num_commande} ne contient pas d'articles")
+        return
+
+    if len(prix_articles) == 0:
+        print(f"La commande {num_commande} ne contient pas de prix pour les articles")
         return
 
     for commande in commandes:
@@ -93,12 +98,16 @@ def ajouter_commande(num_commande, liste_articles):
             print(f"La commande {num_commande} existe déjà !")
             return
 
-    new_commande = [num_commande, liste_articles]
+    if len(liste_articles) != len(prix_articles):
+        print("Le nombre de prix d'articles doit correspondre au nombres d'articles")
+        return
+
+    new_commande = [num_commande, liste_articles, prix_articles]
 
     commandes.append(new_commande)
     return commandes
 
-ajouter_commande('6', ["5005/18/C", "1493/12/C", "4004/10/C", "1001/14/C"])
+ajouter_commande('6', ["5005/18/C", "1493/12/C", "4004/10/C", "1001/14/C"], ["100.1", "140.122", "2129.86554"])
 print("\n")
 
 # ------------------------------
